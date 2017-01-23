@@ -1,1 +1,1 @@
-## Simple RESTful API with Laravel 5.3
+## Simple RESTful Forum API with Laravel 5.3
