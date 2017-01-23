@@ -7,3 +7,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::post('register', 'RegisterController@register');
+
+Route::group(['prefix' => 'topics'], function () {
+    Route::post('/', 'TopicController@store')->middleware('auth:api');
+});
