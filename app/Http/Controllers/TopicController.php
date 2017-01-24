@@ -20,6 +20,16 @@ class TopicController extends Controller
             ->transformWith(new TopicTransformer)
             ->toArray();
     }
+
+    public function show(Topic $topic)
+    {
+        return fractal()
+            ->item($topic)
+            ->parseIncludes(['user', 'posts', 'posts.user'])
+            ->transformWith(new TopicTransformer)
+            ->toArray();
+    }
+
     public function store(StoreTopicRequest $request)
     {
         $topic = new Topic;
