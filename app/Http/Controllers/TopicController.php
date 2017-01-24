@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 
 class TopicController extends Controller
 {
+    public function index()
+    {
+        $topics = Topic::latestFirst()->get();
+
+        return fractal()
+            ->collection($topics)
+            ->parseIncludes(['user'])
+            ->transformWith(new TopicTransformer)
+            ->toArray();
+    }
     public function store(StoreTopicRequest $request)
     {
         $topic = new Topic;
