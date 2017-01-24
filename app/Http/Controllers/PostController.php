@@ -38,4 +38,13 @@ class PostController extends Controller
             ->transformWith(new PostTransformer)
             ->toArray();
     }
+
+    public function destroy(Topic $topic, Post $post)
+    {
+        $this->authorize('destroy', $post);
+
+        $post->delete();
+
+        return response(null, 204);
+    }
 }
